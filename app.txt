@@ -1,0 +1,87 @@
+796c7db70bb77534cce81286e3905ec4
+
+
+http://api.weatherstack.com/
+
+http://api.weatherstack.com/current
+    ? access_key = YOUR_ACCESS_KEY
+    & query = New York
+    
+// optional parameters: 
+
+    & units = m
+    & language = en
+    & callback = MY_CALLBACK
+
+
+http://api.weatherstack.com/current
+
+
+
+
+
+{
+    "request": {
+        "type": "City",
+        "query": "New York, United States of America",
+        "language": "en",
+        "unit": "m"
+    },
+    "location": {
+        "name": "New York",
+        "country": "United States of America",
+        "region": "New York",
+        "lat": "40.714",
+        "lon": "-74.006",
+        "timezone_id": "America/New_York",
+        "localtime": "2024-09-19 14:30",
+        "localtime_epoch": 1726756200,
+        "utc_offset": "-4.0"
+    },
+    "current": {
+        "observation_time": "06:30 PM",
+        "temperature": 28,
+        "weather_code": 113,
+        "weather_icons": [
+            "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0001_sunny.png"
+        ],
+        "weather_descriptions": [
+            "Sunny"
+        ],
+        "wind_speed": 13,
+        "wind_degree": 59,
+        "wind_dir": "ENE",
+        "pressure": 1012,
+        "precip": 0,
+        "humidity": 34,
+        "cloudcover": 0,
+        "feelslike": 28,
+        "uv_index": 8,
+        "visibility": 16,
+        "is_day": "yes"
+    }
+}
+
+
+import requests
+
+url = "https://api.weatherstack.com/current?access_key={796c7db70bb77534cce81286e3905ec4}"
+
+querystring = {"query":"New Delhi"}
+
+response = requests.get(url, params=querystring)
+
+print(response.json())
+
+
+
+import http.client
+
+conn = http.client.HTTPSConnection("api.weatherstack.com")
+
+conn.request("GET", "/current?access_key={796c7db70bb77534cce81286e3905ec4}")
+
+res = conn.getresponse()
+data = res.read()
+
+print(data.decode("utf-8"))
